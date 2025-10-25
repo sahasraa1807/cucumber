@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useCart } from '../context/CartContext';
 import { toast } from 'react-toastify';
+import API_URL from '../config';
+
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -20,7 +22,8 @@ const ProductDetails = () => {
 
   const fetchProduct = async () => {
     try {
-      const { data } = await axios.get(`/api/products/${id}`);
+      const { data } = await axios.get(`${API_URL}/api/products/${id}`);
+
       setProduct(data);
       if (data.sizes && data.sizes.length > 0) setSelectedSize(data.sizes[0]);
       if (data.colors && data.colors.length > 0) setSelectedColor(data.colors[0]);

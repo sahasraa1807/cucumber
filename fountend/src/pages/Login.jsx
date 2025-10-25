@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
+import API_URL from '../config';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const { data } = await axios.post('/api/auth/login', formData);
+      const { data } = await axios.post(`${API_URL}/api/auth/login`, formData);
       login(data);
       toast.success('Login successful!');
       navigate('/');
@@ -41,26 +42,30 @@ const Login = () => {
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Email</label>
+            <label htmlFor="email">Email</label>
             <input
+              id="email"
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               required
               placeholder="Enter your email"
+              autoComplete="email"
             />
           </div>
 
           <div className="form-group">
-            <label>Password</label>
+            <label htmlFor="password">Password</label>
             <input
+              id="password"
               type="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
               required
               placeholder="Enter your password"
+              autoComplete="current-password"
             />
           </div>
 

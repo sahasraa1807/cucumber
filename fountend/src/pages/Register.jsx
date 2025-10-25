@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
+import API_URL from '../config';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ const Register = () => {
 
     try {
       const { confirmPassword, ...registerData } = formData;
-      const { data } = await axios.post('/api/auth/register', registerData);
+      const { data } = await axios.post(`${API_URL}/api/auth/register`, registerData);
       login(data);
       toast.success('Registration successful!');
       navigate('/');
@@ -72,125 +73,145 @@ const Register = () => {
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Full Name</label>
+            <label htmlFor="name">Full Name</label>
             <input
+              id="name"
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
               required
               placeholder="Enter your full name"
+              autoComplete="name"
             />
           </div>
 
           <div className="form-group">
-            <label>Email</label>
+            <label htmlFor="email">Email</label>
             <input
+              id="email"
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               required
               placeholder="Enter your email"
+              autoComplete="email"
             />
           </div>
 
           <div className="form-group">
-            <label>Phone</label>
+            <label htmlFor="phone">Phone</label>
             <input
+              id="phone"
               type="tel"
               name="phone"
               value={formData.phone}
               onChange={handleChange}
               required
               placeholder="Enter your phone number"
+              autoComplete="tel"
             />
           </div>
 
           <div className="form-group">
-            <label>Password</label>
+            <label htmlFor="password">Password</label>
             <input
+              id="password"
               type="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
               required
               placeholder="Create a password (min 6 characters)"
+              autoComplete="new-password"
             />
           </div>
 
           <div className="form-group">
-            <label>Confirm Password</label>
+            <label htmlFor="confirmPassword">Confirm Password</label>
             <input
+              id="confirmPassword"
               type="password"
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
               required
               placeholder="Confirm your password"
+              autoComplete="new-password"
             />
           </div>
 
           <div className="form-group">
-            <label>Street Address</label>
+            <label htmlFor="street">Street Address</label>
             <input
+              id="street"
               type="text"
               name="address.street"
               value={formData.address.street}
               onChange={handleChange}
               required
               placeholder="Enter street address"
+              autoComplete="street-address"
             />
           </div>
 
           <div style={styles.row}>
             <div className="form-group" style={styles.halfWidth}>
-              <label>City</label>
+              <label htmlFor="city">City</label>
               <input
+                id="city"
                 type="text"
                 name="address.city"
                 value={formData.address.city}
                 onChange={handleChange}
                 required
                 placeholder="City"
+                autoComplete="address-level2"
               />
             </div>
 
             <div className="form-group" style={styles.halfWidth}>
-              <label>State</label>
+              <label htmlFor="state">State</label>
               <input
+                id="state"
                 type="text"
                 name="address.state"
                 value={formData.address.state}
                 onChange={handleChange}
                 required
                 placeholder="State"
+                autoComplete="address-level1"
               />
             </div>
           </div>
 
           <div style={styles.row}>
             <div className="form-group" style={styles.halfWidth}>
-              <label>Pincode</label>
+              <label htmlFor="pincode">Pincode</label>
               <input
+                id="pincode"
                 type="text"
                 name="address.pincode"
                 value={formData.address.pincode}
                 onChange={handleChange}
                 required
                 placeholder="Pincode"
+                autoComplete="postal-code"
               />
             </div>
 
             <div className="form-group" style={styles.halfWidth}>
-              <label>Country</label>
+              <label htmlFor="country">Country</label>
               <input
+                id="country"
                 type="text"
                 name="address.country"
                 value={formData.address.country}
                 onChange={handleChange}
                 required
                 disabled
+                autoComplete="country-name"
               />
             </div>
           </div>

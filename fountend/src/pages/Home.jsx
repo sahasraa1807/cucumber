@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
+import API_URL from '../config';
 
 const Home = () => {
   const [featuredProducts, setFeaturedProducts] = useState([]);
@@ -14,7 +15,7 @@ const Home = () => {
 
   const fetchFeaturedProducts = async () => {
     try {
-      const { data } = await axios.get('/api/products?featured=true');
+     const { data } = await axios.get(`${API_URL}/api/products?featured=true`);
       setFeaturedProducts(data.slice(0, 8));
     } catch (error) {
       console.error('Error fetching featured products:', error);

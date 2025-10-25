@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
+import API_URL from '../config';
+
 
 const Orders = () => {
   const { user } = useAuth();
@@ -25,7 +27,8 @@ const Orders = () => {
           Authorization: `Bearer ${user.token}`
         }
       };
-      const { data } = await axios.get('/api/orders/myorders', config);
+     const { data } = await axios.get(`${API_URL}/api/orders/myorders`, config);
+
       setOrders(data);
     } catch (error) {
       toast.error('Failed to fetch orders');

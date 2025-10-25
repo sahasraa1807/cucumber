@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
+import API_URL from '../config';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -25,7 +26,8 @@ const Products = () => {
       if (filters.category && filters.category !== 'All') params.category = filters.category;
       if (filters.search) params.search = filters.search;
 
-      const { data } = await axios.get('/api/products', { params });
+     const { data } = await axios.get(`${API_URL}/api/products`, { params });
+
       setProducts(data);
     } catch (error) {
       console.error('Error fetching products:', error);

@@ -4,6 +4,8 @@ import axios from 'axios';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
+import API_URL from '../config';
+
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -59,7 +61,8 @@ const Checkout = () => {
         }
       };
 
-      const { data } = await axios.post('/api/orders', orderData, config);
+     const { data } = await axios.post(`${API_URL}/api/orders`, orderData, config);
+
       
       clearCart();
       toast.success('Order placed successfully!');
